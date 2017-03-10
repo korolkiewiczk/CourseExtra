@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kra", "Kra\Kra.csproj", "{7AF4E3CF-DE72-4219-BE1A-E14337F61CC7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tanks", "Tanks\Tanks.csproj", "{16920D2A-BB28-4C3E-90F3-F3A7B1E3195C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7AF4E3CF-DE72-4219-BE1A-E14337F61CC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AF4E3CF-DE72-4219-BE1A-E14337F61CC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AF4E3CF-DE72-4219-BE1A-E14337F61CC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AF4E3CF-DE72-4219-BE1A-E14337F61CC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16920D2A-BB28-4C3E-90F3-F3A7B1E3195C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16920D2A-BB28-4C3E-90F3-F3A7B1E3195C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16920D2A-BB28-4C3E-90F3-F3A7B1E3195C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16920D2A-BB28-4C3E-90F3-F3A7B1E3195C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
