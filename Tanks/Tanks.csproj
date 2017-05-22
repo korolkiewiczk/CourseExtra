@@ -46,6 +46,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Actors\Barrel.cs" />
+    <Compile Include="Actors\Board.cs" />
+    <Compile Include="Actors\MoveableGameObject.cs" />
+    <Compile Include="Actors\Rocket.cs" />
+    <Compile Include="Utlis\Shape.cs" />
+    <Compile Include="Utlis\Texture.cs" />
+    <Compile Include="Drawing\GameObjectDrawer.cs" />
+    <Compile Include="Logic\State.cs" />
+    <Compile Include="Logic\TanksGame.cs" />
+    <Compile Include="Utlis\Direction.cs" />
+    <Compile Include="Actors\Tank.cs" />
+    <Compile Include="Utlis\Vector2D.cs" />
+    <Compile Include="Utlis\Dimension.cs" />
+    <Compile Include="Actors\GameObject.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

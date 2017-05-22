@@ -7,88 +7,51 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Tanks.Drawing;
+using Tanks.Logic;
+using Tanks.Utlis;
 
 namespace Tanks
 {
-public partial class Form1 : Form
-{
-    Bitmap Backbuffer;
-
-    const int BallAxisSpeed = 2;
-
-    Point BallPos = new Point(30, 30);
-    Point BallSpeed = new Point(BallAxisSpeed, BallAxisSpeed);
-    const int BallSize = 50;
-
-    public Form1()
+    public partial class Form1 : Form
     {
-        InitializeComponent();
+        private TanksGame _tanksGame;
 
-        this.SetStyle(
-        ControlStyles.UserPaint |
-        ControlStyles.AllPaintingInWmPaint |
-        ControlStyles.DoubleBuffer, true);
-
-        Timer GameTimer = new Timer();
-        GameTimer.Interval = 10;
-        GameTimer.Tick += new EventHandler(GameTimer_Tick);
-        GameTimer.Start();
-
-        this.ResizeEnd += new EventHandler(Form1_CreateBackBuffer);
-        this.Load += new EventHandler(Form1_CreateBackBuffer);
-        this.Paint += new PaintEventHandler(Form1_Paint);
-
-        this.KeyDown += new KeyEventHandler(Form1_KeyDown);
-    }
-
-    void Form1_KeyDown(object sender, KeyEventArgs e)
-    {
-        if (e.KeyCode == Keys.Left)
-            BallSpeed.X = -BallAxisSpeed;
-        else if (e.KeyCode == Keys.Right)
-            BallSpeed.X = BallAxisSpeed;
-        else if (e.KeyCode == Keys.Up)
-            BallSpeed.Y = -BallAxisSpeed;
-        else if (e.KeyCode == Keys.Down)
-            BallSpeed.Y = BallAxisSpeed;
-    }
-
-    void Form1_Paint(object sender, PaintEventArgs e)
-    {
-        if (Backbuffer != null)
+        public Form1()
         {
-            e.Graphics.DrawImageUnscaled(Backbuffer, Point.Empty);
+            InitializeComponent();
+
+            SetStyle(
+            ControlStyles.UserPaint |
+            ControlStyles.AllPaintingInWmPaint |
+            ControlStyles.DoubleBuffer, true);
+
+            Timer GameTimer = new Timer();
+            GameTimer.Interval = 33;
+            GameTimer.Tick += GameTimer_Tick;
+            GameTimer.Start();
+
+            Paint += Form1_Paint;
+
+            KeyDown += Form1_KeyDown;
+            _tanksGame = new TanksGame(new GameObjectDrawer(new Dimension(ClientSize.Width, ClientSize.Height)));
+            _tanksGame.Initialize();
         }
-    }
 
-    void Form1_CreateBackBuffer(object sender, EventArgs e)
-    {
-        if (Backbuffer != null)
-            Backbuffer.Dispose();
-
-        Backbuffer = new Bitmap(ClientSize.Width, ClientSize.Height);
-    }
-
-    void Draw()
-    {
-        if (Backbuffer != null)
+        void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            using (var g = Graphics.FromImage(Backbuffer))
-            {
-                g.Clear(Color.White);
-                g.FillEllipse(Brushes.Black, BallPos.X - BallSize / 2, BallPos.Y - BallSize / 2, BallSize, BallSize);
-            }
+            _tanksGame.KeyPress((char)e.KeyValue);
+        }
 
+        void Form1_Paint(object sender, PaintEventArgs e)
+        {
+            _tanksGame.Draw(e.Graphics);
+        }
+
+        void GameTimer_Tick(object sender, EventArgs e)
+        {
+            _tanksGame.Tick();
             Invalidate();
         }
     }
-
-    void GameTimer_Tick(object sender, EventArgs e)
-    {
-        BallPos.X += BallSpeed.X;
-        BallPos.Y += BallSpeed.Y;
-
-        Draw();
-    }
-}
 }
